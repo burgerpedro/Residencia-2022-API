@@ -23,4 +23,24 @@ public class EditoraService {
 		return editoraRepository.findById(id).get();
 		
 	}
+	
+	public Editora saveEditora(Editora editora) {
+		return editoraRepository.save(editora);
+		
+	}
+	
+	public Editora updateEditora(Editora editora,Integer id) {
+		
+		Editora editoraExisteNoBanco = getEditoraById(id);
+		
+		editoraExisteNoBanco.setNome(editora.getNome());
+					
+		return editoraRepository.save(editora);
+		
+	}
+	
+	public Editora deleteEditora(Integer id) {
+		editoraRepository.deleteById(id);
+		return getEditoraById(id);
+	}
 }
