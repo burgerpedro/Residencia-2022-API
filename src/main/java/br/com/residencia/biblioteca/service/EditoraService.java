@@ -20,8 +20,8 @@ public class EditoraService {
 	}
 	
 	public Editora getEditoraById(Integer id) {
-		return editoraRepository.findById(id).get();
-		
+		//return editoraRepository.findById(id).get();
+		return editoraRepository.findById(id).orElse(null);
 	}
 	
 	public Editora saveEditora(Editora editora) {
@@ -41,6 +41,7 @@ public class EditoraService {
 	
 	public Editora deleteEditora(Integer id) {
 		editoraRepository.deleteById(id);
+		
 		return getEditoraById(id);
 	}
 }

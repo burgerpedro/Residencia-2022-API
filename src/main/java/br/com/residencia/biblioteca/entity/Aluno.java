@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "alunos")
 public class Aluno {
@@ -46,8 +48,9 @@ public class Aluno {
 	@Column(name = "cidade")
 	private String cidade;
 	
+	//@JsonBackReference
 	@OneToMany(mappedBy = "aluno")
-	private Set<Emprestimo> emprestimo;
+	private Set<Emprestimo> emprestimos;
 
 	public Integer getNumeroMatriculaAluno() {
 		return numeroMatriculaAluno;
@@ -121,12 +124,12 @@ public class Aluno {
 		this.cidade = cidade;
 	}
 
-	public Set<Emprestimo> getEmprestimo() {
-		return emprestimo;
+	public Set<Emprestimo> getEmprestimos() {
+		return emprestimos;
 	}
 
-	public void setEmprestimo(Set<Emprestimo> emprestimo) {
-		this.emprestimo = emprestimo;
+	public void setEmprestimos(Set<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
 	}
 
 		

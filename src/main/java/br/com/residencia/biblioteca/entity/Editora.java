@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 
 @Entity
@@ -24,6 +26,8 @@ public class Editora {
 	@Column(name = "nome")
 	private String nome;
 	
+	
+	//@JsonBackReference
 	@OneToMany(mappedBy = "editora")
 	private Set<Livro> livros;
 

@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "emprestimo")
 public class Emprestimo {
@@ -22,11 +24,13 @@ public class Emprestimo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codigoEmprestimo;
 	
+	//@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "numeromatriculaaluno",referencedColumnName = "numeromatriculaaluno")
 	private Aluno aluno;
 	
-	@OneToOne
+	//@JsonManagedReference
+	@ManyToOne
 	@JoinColumn(name = "codigolivro",referencedColumnName = "codigolivro")
 	private Livro livro;
 	
