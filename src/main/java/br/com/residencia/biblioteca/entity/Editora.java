@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -28,6 +29,7 @@ public class Editora {
 	
 	
 	//@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "editora")
 	private Set<Livro> livros;
 

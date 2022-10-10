@@ -30,7 +30,7 @@ public class Emprestimo {
 	private Aluno aluno;
 	
 	//@JsonManagedReference
-	@ManyToOne
+	@ManyToOne	
 	@JoinColumn(name = "codigolivro",referencedColumnName = "codigolivro")
 	private Livro livro;
 	
