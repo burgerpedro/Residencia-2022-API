@@ -15,10 +15,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "codigoLivro")
 @Entity
 @Table(name = "livros")
 public class Livro {
@@ -40,12 +44,12 @@ public class Livro {
 	@Column(name = "codigoisbn")
 	private Integer codigoIsbn;
 	
-	//@JsonBackReference
-	@JsonIgnore
+	//@JsonManagedReference(value = "livro-back")
+	//@JsonIgnore
 	@OneToMany(mappedBy = "livro")
 	private Set<Emprestimo> emprestimo;
 	
-	//@JsonManagedReference
+	//@JsonBackReference(value = "editora-back")
 	@ManyToOne
 	@JoinColumn(name = "codigoeditora", referencedColumnName = "codigoeditora")
 	private Editora editora;

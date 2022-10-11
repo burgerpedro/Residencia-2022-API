@@ -13,8 +13,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "codigoEmprestimo")
 @Entity
 @Table(name = "emprestimo")
 public class Emprestimo {
@@ -24,12 +30,12 @@ public class Emprestimo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codigoEmprestimo;
 	
-	//@JsonManagedReference
+	//@JsonBackReference(value = "aluno-back")
 	@ManyToOne
 	@JoinColumn(name = "numeromatriculaaluno",referencedColumnName = "numeromatriculaaluno")
 	private Aluno aluno;
 	
-	//@JsonManagedReference
+	//@JsonBackReference(value = "livro-back")
 	@ManyToOne	
 	@JoinColumn(name = "codigolivro",referencedColumnName = "codigolivro")
 	private Livro livro;
