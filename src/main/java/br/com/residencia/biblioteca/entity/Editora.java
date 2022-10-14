@@ -16,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import br.com.residencia.biblioteca.DTO.EditoraDTO;
+
 @JsonIdentityInfo(
 		generator = ObjectIdGenerators.PropertyGenerator.class,
 		property = "codigoEditora")
@@ -36,6 +38,16 @@ public class Editora {
 	//@JsonIgnore
 	@OneToMany(mappedBy = "editora")
 	private Set<Livro> livros;
+	
+	
+	public Editora() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Editora(EditoraDTO editoraDTO) {
+		this.codigoEditora = editoraDTO.getCodigoEditora();
+		this.nome = editoraDTO.getNome();
+	}
 
 	public Integer getCodigoEditora() {
 		return codigoEditora;
