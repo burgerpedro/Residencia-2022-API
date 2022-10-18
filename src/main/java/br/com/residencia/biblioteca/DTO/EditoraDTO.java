@@ -1,21 +1,18 @@
 package br.com.residencia.biblioteca.DTO;
 
+import java.util.List;
+import java.util.Set;
+
 import br.com.residencia.biblioteca.entity.Editora;
 
 public class EditoraDTO {
 
 	private Integer codigoEditora;
 	private String nome;
+	private List<LivroDTO> livrosDTO;
 
 	
 	public EditoraDTO() {
-		// TODO Auto-generated constructor stub
-	}
-
-
-	public EditoraDTO(Integer codigoEditora, String nome) {
-		this.codigoEditora = codigoEditora;
-		this.nome = nome;
 	}
 
 	public EditoraDTO(Editora editora) {
@@ -42,5 +39,18 @@ public class EditoraDTO {
 	public void setCodigoEditora(Integer codigoEditora) {
 		this.codigoEditora = codigoEditora;
 	}
+
+
+
+	public List<LivroDTO> getLivrosDTO() {
+		return livrosDTO;
+	}
+
+
+
+	public void setLivrosDTO(List<LivroDTO> livrosDTO) {
+		this.livrosDTO = livrosDTO;
+	}
+
 
 }

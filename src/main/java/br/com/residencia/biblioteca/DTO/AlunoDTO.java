@@ -1,61 +1,53 @@
-package br.com.residencia.biblioteca.entity;
-
+package br.com.residencia.biblioteca.DTO;
 
 import java.time.Instant;
-import java.util.Set;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+public class AlunoDTO {
 
-//@JsonIdentityInfo(
-	//	generator = ObjectIdGenerators.PropertyGenerator.class,
-		//property = "numeroMatriculaAluno")
-@Entity
-@Table(name = "alunos")
-public class Aluno {
-
-	@Id
-	@Column(name = "numeromatriculaaluno")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer numeroMatriculaAluno;
 	
-	
-	@Column(name = "nome")
 	private String nome;
 	
-	@Column(name = "datanascimento")
 	private Instant dataNascimento; 
 	
-	@Column(name = "cpf")
 	private String cpf;
 	
-	@Column(name = "logradouro")
 	private String logradouro;
 	
-	@Column(name = "numerologradouro")
 	private String numeroLogradouro;
 	
-	@Column(name = "complemento")
 	private String complemento; 
 
-	@Column(name = "bairro")
 	private String bairro;
 	
-	@Column(name = "cidade")
 	private String cidade;
 	
-	//@JsonManagedReference(value = "aluno-back")
-	//@JsonIgnore
-	@OneToMany(mappedBy = "aluno")
-	private Set<Emprestimo> emprestimos;
+	private List<EmprestimoDTO> emprestimosDTO;
+	
+	private Integer idEmprestimo;
+	
+	private Instant dataEmprestimo;
+	
+	private Instant dataEntrega;
+	
+	public AlunoDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public AlunoDTO(Integer numeroMatriculaAluno, String nome, Instant dataNascimento, String cpf, String logradouro,
+			String numeroLogradouro, String complemento, String bairro, String cidade) {
+		this.numeroMatriculaAluno = numeroMatriculaAluno;
+		this.nome = nome;
+		this.dataNascimento = dataNascimento;
+		this.cpf = cpf;
+		this.logradouro = logradouro;
+		this.numeroLogradouro = numeroLogradouro;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cidade = cidade;
+	}
 
 	public Integer getNumeroMatriculaAluno() {
 		return numeroMatriculaAluno;
@@ -129,13 +121,38 @@ public class Aluno {
 		this.cidade = cidade;
 	}
 
-	public Set<Emprestimo> getEmprestimos() {
-		return emprestimos;
+	public List<EmprestimoDTO> getEmprestimosDTO() {
+		return emprestimosDTO;
 	}
 
-	public void setEmprestimos(Set<Emprestimo> emprestimos) {
-		this.emprestimos = emprestimos;
+	public void setEmprestimosDTO(List<EmprestimoDTO> emprestimosDTO) {
+		this.emprestimosDTO = emprestimosDTO;
 	}
 
-		
+	public Integer getIdEmprestimo() {
+		return idEmprestimo;
+	}
+
+	public void setIdEmprestimo(Integer idEmprestimo) {
+		this.idEmprestimo = idEmprestimo;
+	}
+
+	public Instant getDataEmprestimo() {
+		return dataEmprestimo;
+	}
+
+	public void setDataEmprestimo(Instant dataEmprestimo) {
+		this.dataEmprestimo = dataEmprestimo;
+	}
+
+	public Instant getDataEntrega() {
+		return dataEntrega;
+	}
+
+	public void setDataEntrega(Instant dataEntrega) {
+		this.dataEntrega = dataEntrega;
+	}
+
+	
+	
 }
