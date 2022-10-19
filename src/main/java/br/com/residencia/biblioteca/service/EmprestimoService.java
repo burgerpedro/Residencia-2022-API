@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.residencia.biblioteca.DTO.AlunoDTO;
+import br.com.residencia.biblioteca.DTO.EmprestimoAlunoDTO;
 import br.com.residencia.biblioteca.DTO.EmprestimoDTO;
 import br.com.residencia.biblioteca.DTO.LivroDTO;
 import br.com.residencia.biblioteca.entity.Aluno;
@@ -134,4 +135,16 @@ public class EmprestimoService {
 		return emprestimoDTO;
 		
 	}
+	
+	public EmprestimoAlunoDTO toDTO2(Emprestimo emprestimo) {
+		EmprestimoAlunoDTO emprestimoAlunoDTO = new EmprestimoAlunoDTO();
+		
+		emprestimoAlunoDTO.setCodigoEmprestimo(emprestimo.getCodigoEmprestimo());
+		emprestimoAlunoDTO.setDataEmprestimo(emprestimo.getDataEmprestimo());
+		emprestimoAlunoDTO.setDataEntrega(emprestimo.getDataEntrega());
+		
+		return emprestimoAlunoDTO;
+		
+	}
+	
 }

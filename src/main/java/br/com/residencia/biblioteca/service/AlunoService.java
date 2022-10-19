@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.residencia.biblioteca.DTO.AlunoDTO;
 import br.com.residencia.biblioteca.DTO.AlunoEmprDTO;
+import br.com.residencia.biblioteca.DTO.EmprestimoAlunoDTO;
 import br.com.residencia.biblioteca.DTO.EmprestimoDTO;
 import br.com.residencia.biblioteca.entity.Aluno;
 import br.com.residencia.biblioteca.entity.Emprestimo;
@@ -48,40 +49,22 @@ public class AlunoService {
 			List<Aluno> alunos = alunoRepository.findAll();
 			List<AlunoEmprDTO> alunosEmprDTO = new ArrayList<>();
 			
-			
 			for(Aluno aluno: alunos) {
-				AlunoEmprDTO alunoEmprDTO = new AlunoEmprDTO();
-				
-				alunoEmprDTO.setNumeroMatriculaAluno(aluno.getNumeroMatriculaAluno());
-				alunoEmprDTO.setNome(aluno.getNome());
-				alunoEmprDTO.setCpf(aluno.getCpf());
-				
-				
-				
-				
-				
-				
-				
-				alunosEmprDTO.add(alunoEmprDTO);
+			AlunoEmprDTO alunoEmprDTO = toDTO2(aluno);
+			List<Emprestimo> listaEmprestimo = new ArrayList<>();
+			List<EmprestimoAlunoDTO> listaEmprestimoAlunoDTO = new ArrayList<>();
+			
+			listaEmprestimo = emprestimoRespository.findByAluno(aluno);
+			for(Emprestimo emprestimo : listaEmprestimo) {
+				EmprestimoAlunoDTO emprestimoAlunoDTO = emprestimoService.toDTO2(emprestimo);
+				listaEmprestimoAlunoDTO.add(emprestimoAlunoDTO);
+			}
+			
+			alunoEmprDTO.setEmprestimoAlunoDTO(listaEmprestimoAlunoDTO);
+			
+			alunosEmprDTO.add(alunoEmprDTO);
 			}
 			return alunosEmprDTO;
-		}
-		
-
-		public List<AlunoDTO> getAllAlunobyEmprestimosDTO2(){
-			List<Aluno> alunos = alunoRepository.findAll();
-			List<AlunoDTO> alunosDTO = new ArrayList<>();
-			
-			
-			for(Aluno aluno: alunos) {
-				AlunoDTO alunoDTO = toDTO(aluno);
-				List<EmprestimoDTO> listaEmprestimosDTO = new ArrayList<>();
-				
-				alunoDTO.setEmprestimosDTO(listaEmprestimosDTO);
-				
-				alunosDTO.add(alunoDTO);
-			}
-			return alunosDTO;
 		}
 		
 		
@@ -186,6 +169,18 @@ public class AlunoService {
 	
 	return aluno;
 	}
+	
+	public AlunoEmprDTO toDTO2(Aluno aluno) {
+		AlunoEmprDTO alunoEmprDTO = new AlunoEmprDTO();
+		
+		alunoEmprDTO.setNumeroMatriculaAluno(aluno.getNumeroMatriculaAluno());
+		alunoEmprDTO.setNome(aluno.getNome());
+		alunoEmprDTO.setCpf(aluno.getCpf());
+		
+		return alunoEmprDTO;
+	
+	}
+	
 	
 	
 }

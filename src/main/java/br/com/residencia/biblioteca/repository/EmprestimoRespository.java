@@ -10,4 +10,5 @@ import br.com.residencia.biblioteca.entity.Livro;
 
 public interface EmprestimoRespository extends JpaRepository<Emprestimo, Integer>{
 
+	public List<Emprestimo> findByAluno(Aluno aluno);
 }

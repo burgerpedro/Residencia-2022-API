@@ -182,7 +182,7 @@ public class EditoraService {
 			
 			editoraExisteNoBanco = toEntidade(editoraDTO);
 			
-		//	editoraExisteNoBanco.setNome(editoraDTO.getNome());
+			editoraExisteNoBanco.setNome(editoraDTO.getNome());
 			Editora editoraAtualizada = editoraRepository.save(editoraExisteNoBanco);
 			
 			editoraAtualizadaDTO = toDTO(editoraAtualizada);
@@ -212,6 +212,7 @@ public class EditoraService {
 	private Editora toEntidade(EditoraDTO editoraDTO) {
 		Editora editora = new Editora();
 		
+		editora.setCodigoEditora(editoraDTO.getCodigoEditora());
 		editora.setNome(editoraDTO.getNome());
 		
 		return editora;

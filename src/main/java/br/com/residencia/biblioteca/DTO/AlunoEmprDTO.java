@@ -1,6 +1,7 @@
 package br.com.residencia.biblioteca.DTO;
 
 import java.time.Instant;
+import java.util.List;
 
 public class AlunoEmprDTO {
 	
@@ -10,16 +11,14 @@ public class AlunoEmprDTO {
 	
 	private String cpf;
 	
-	private Integer idEmprestimo;
+	private List<EmprestimoAlunoDTO> emprestimoAlunoDTO;
 	
-	private Instant dataEmprestimo;
-	
-	private Instant dataEntrega;
-	
+
 
 	public AlunoEmprDTO() {
 		// TODO Auto-generated constructor stub
 	}
+
 
 
 	public Integer getNumeroMatriculaAluno() {
@@ -27,9 +26,11 @@ public class AlunoEmprDTO {
 	}
 
 
+
 	public void setNumeroMatriculaAluno(Integer numeroMatriculaAluno) {
 		this.numeroMatriculaAluno = numeroMatriculaAluno;
 	}
+
 
 
 	public String getNome() {
@@ -37,9 +38,11 @@ public class AlunoEmprDTO {
 	}
 
 
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 
 
 	public String getCpf() {
@@ -47,39 +50,22 @@ public class AlunoEmprDTO {
 	}
 
 
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
 
-	public Integer getIdEmprestimo() {
-		return idEmprestimo;
+
+	public List<EmprestimoAlunoDTO> getEmprestimoAlunoDTO() {
+		return emprestimoAlunoDTO;
 	}
 
 
-	public void setIdEmprestimo(Integer idEmprestimo) {
-		this.idEmprestimo = idEmprestimo;
+
+	public void setEmprestimoAlunoDTO(List<EmprestimoAlunoDTO> emprestimoAlunoDTO) {
+		this.emprestimoAlunoDTO = emprestimoAlunoDTO;
 	}
 
 
-	public Instant getDataEmprestimo() {
-		return dataEmprestimo;
-	}
-
-
-	public void setDataEmprestimo(Instant dataEmprestimo) {
-		this.dataEmprestimo = dataEmprestimo;
-	}
-
-
-	public Instant getDataEntrega() {
-		return dataEntrega;
-	}
-
-
-	public void setDataEntrega(Instant dataEntrega) {
-		this.dataEntrega = dataEntrega;
-	}
-
-	
 }

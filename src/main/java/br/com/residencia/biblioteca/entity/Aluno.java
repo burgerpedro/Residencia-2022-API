@@ -15,9 +15,9 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-//@JsonIdentityInfo(
-	//	generator = ObjectIdGenerators.PropertyGenerator.class,
-		//property = "numeroMatriculaAluno")
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "numeroMatriculaAluno")
 @Entity
 @Table(name = "alunos")
 public class Aluno {
