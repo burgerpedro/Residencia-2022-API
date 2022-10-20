@@ -16,6 +16,7 @@ import br.com.residencia.biblioteca.entity.Editora;
 import br.com.residencia.biblioteca.entity.Livro;
 import br.com.residencia.biblioteca.repository.EditoraRepository;
 import br.com.residencia.biblioteca.repository.LivroRepository;
+import br.com.residencia.biblioteca.security.EmailService;
 
 @Service
 public class EditoraService {
@@ -29,31 +30,13 @@ public class EditoraService {
 	@Autowired
 	LivroService livroService;
 	
+	@Autowired
+	EmailService emailService;
+	
 	public List<Editora> gettAllEditoras() {
 	return editoraRepository.findAll();
 
 	}
-	/*
-	public List<EditoraDTO> gettAllEditorasDTO(){
-			List<Editora> editoras = editoraRepository.findAll();
-			List<EditoraDTO> editorasDTO = new ArrayList<EditoraDTO>();
-			
-			for(Editora editora: editoras) {
-			editorasDTO.add(new EditoraDTO(editora));
-			}
-			return editorasDTO;
-			//com construtor
-			
-		
-		
-	}
-	
-	public List<EditoraDTO> gettAllEditorasDTO(){
-	return editoraRepository.findAll().stream().map(EditoraDTO::new).collect(Collectors.toList());
-	//stream devolve uma coleção e habilita metodos/ map mapeia os objetos e cria novos objetos collector tras uma lista com os objetos
-	}
-	
-	*/
 	
 	public List<EditoraDTO> gettAllEditorasDTO(){
 		List<Editora> editoras = editoraRepository.findAll();
@@ -111,27 +94,7 @@ public class EditoraService {
 	}
 	
 	
-	/*
-	public EditoraDTO saveEditoraDTO(EditoraDTO editoraDTO) {
-		Editora editora = new Editora(editoraDTO);
-		return new EditoraDTO(editoraRepository.save(editora));
-	//com construtor	
-	}
-		/*
-		public EditoraDTO saveEditoraDTO2(EditoraDTO editoraDTO) {
-			Editora editora = new Editora();
-			editora.setNome(editoraDTO.getNome());
-			
-			Editora novaEditora = editoraRepository.save(editora);
-			
-			EditoraDTO novaEditoraDTO = new EditoraDTO();
-			
-			novaEditoraDTO.setCodigoEditora(novaEditora.getCodigoEditora());
-			novaEditoraDTO.setNome(novaEditora.getNome());
-			return novaEditoraDTO;
-			//sem construtor conversao interna dentro do metodo
-		}
-		*/
+	
 		public EditoraDTO saveEditoraDTO(EditoraDTO editoraDTO) {
 			Editora editora = toEntidade(editoraDTO);
 			Editora novaEditora = editoraRepository.save(editora);
@@ -141,21 +104,7 @@ public class EditoraService {
 				return editoraAtualizadaDTO;
 			//com metodo de conversao
 		}
-		/*
-		public EditoraDTO saveEditoraDTOotimizado(EditoraDTO editoraDTO) {
-			Editora novaEditora = editoraRepository.save(toEntidade(editoraDTO));
-			
-			return	toDTO(novaEditora);
-			//com metodo de conversao
-		}
 		
-		public EditoraDTO saveEditoraDTOotimizado2(EditoraDTO editoraDTO) {
-			return	toDTO(editoraRepository.save(toEntidade(editoraDTO)));
-			//com metodo de conversao  // prejudicial no entendimento
-		}
-		
-		
-		*/
 		
 	public Editora saveEditora(Editora editora) {
 		return editoraRepository.save(editora);
@@ -180,9 +129,9 @@ public class EditoraService {
 		
 		if(editoraExisteNoBanco != null) {
 			
+			editoraDTO.setCodigoEditora(editoraExisteNoBanco.getCodigoEditora());
 			editoraExisteNoBanco = toEntidade(editoraDTO);
 			
-			editoraExisteNoBanco.setNome(editoraDTO.getNome());
 			Editora editoraAtualizada = editoraRepository.save(editoraExisteNoBanco);
 			
 			editoraAtualizadaDTO = toDTO(editoraAtualizada);
@@ -190,6 +139,8 @@ public class EditoraService {
 			//editoraAtualizadaDTO.setCodigoEditora(editoraAtualizada.getCodigoEditora());
 			//editoraAtualizadaDTO.setNome(editoraAtualizada.getNome());
 		}
+		//emailService.sendEmail("pedro.a.burger@gmail.com","Testando envio de email",editoraAtualizadaDTO.toString());
+		
 		return editoraAtualizadaDTO;
 	}
 	
@@ -239,5 +190,63 @@ public class EditoraService {
 		
 		return consultaCnpjDTO;
 	}
+	
+	/*
+	public List<EditoraDTO> gettAllEditorasDTO(){
+			List<Editora> editoras = editoraRepository.findAll();
+			List<EditoraDTO> editorasDTO = new ArrayList<EditoraDTO>();
+			
+			for(Editora editora: editoras) {
+			editorasDTO.add(new EditoraDTO(editora));
+			}
+			return editorasDTO;
+			//com construtor
+	}
+	
+	public List<EditoraDTO> gettAllEditorasDTO(){
+	return editoraRepository.findAll().stream().map(EditoraDTO::new).collect(Collectors.toList());
+	//stream devolve uma coleção e habilita metodos/ map mapeia os objetos e cria novos objetos collector tras uma lista com os objetos
+	}
+	
+	*/
+	
+	/*
+	public EditoraDTO saveEditoraDTOotimizado(EditoraDTO editoraDTO) {
+		Editora novaEditora = editoraRepository.save(toEntidade(editoraDTO));
+		
+		return	toDTO(novaEditora);
+		//com metodo de conversao
+	}
+	
+	public EditoraDTO saveEditoraDTOotimizado2(EditoraDTO editoraDTO) {
+		return	toDTO(editoraRepository.save(toEntidade(editoraDTO)));
+		//com metodo de conversao  // prejudicial no entendimento
+	}
+	
+	
+	*/
+	
+	/*
+	public EditoraDTO saveEditoraDTO(EditoraDTO editoraDTO) {
+		Editora editora = new Editora(editoraDTO);
+		return new EditoraDTO(editoraRepository.save(editora));
+	//com construtor	
+	}
+		/*
+		public EditoraDTO saveEditoraDTO2(EditoraDTO editoraDTO) {
+			Editora editora = new Editora();
+			editora.setNome(editoraDTO.getNome());
+			
+			Editora novaEditora = editoraRepository.save(editora);
+			
+			EditoraDTO novaEditoraDTO = new EditoraDTO();
+			
+			novaEditoraDTO.setCodigoEditora(novaEditora.getCodigoEditora());
+			novaEditoraDTO.setNome(novaEditora.getNome());
+			return novaEditoraDTO;
+			//sem construtor conversao interna dentro do metodo
+		}
+		*/
+	
 	
 }

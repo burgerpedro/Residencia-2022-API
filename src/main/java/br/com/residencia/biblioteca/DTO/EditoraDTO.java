@@ -52,5 +52,11 @@ public class EditoraDTO {
 		this.livrosDTO = livrosDTO;
 	}
 
+	@Override
+	public String toString() {
+		return "EditoraDTO [codigoEditora=" + codigoEditora + ", nome=" + nome + ", livrosDTO=" + livrosDTO + "]";
+	}
 
+
+	
 }
