@@ -10,6 +10,9 @@ public class EditoraDTO {
 	private Integer codigoEditora;
 	private String nome;
 	private List<LivroDTO> livrosDTO;
+	private String imagemNome;
+	private String imagemFileName;
+	private String imagemUrl;
 
 	
 	public EditoraDTO() {
@@ -50,6 +53,31 @@ public class EditoraDTO {
 
 	public void setLivrosDTO(List<LivroDTO> livrosDTO) {
 		this.livrosDTO = livrosDTO;
+	}
+	
+
+	public String getImagemNome() {
+		return imagemNome;
+	}
+
+	public void setImagemNome(String imagemNome) {
+		this.imagemNome = imagemNome;
+	}
+
+	public String getImagemFileName() {
+		return imagemFileName;
+	}
+
+	public void setImagemFileName(String imagemFileName) {
+		this.imagemFileName = imagemFileName;
+	}
+
+	public String getImagemUrl() {
+		return imagemUrl;
+	}
+
+	public void setImagemUrl(String imagemUrl) {
+		this.imagemUrl = imagemUrl;
 	}
 
 	@Override

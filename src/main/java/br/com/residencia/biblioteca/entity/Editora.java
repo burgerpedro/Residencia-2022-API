@@ -30,6 +30,15 @@ public class Editora {
 	@Column(name = "nome")
 	private String nome;
 	
+	@Column(name = "imagem_nome")
+	private String imagemNome;
+	
+	@Column(name = "imagem_filename")
+	private String imagemFileName;
+	
+	@Column(name = "imagem_url")
+	private String imagemUrl;
+	
 	
 	//@JsonManagedReference(value = "editora-back")
 	//@JsonIgnore
@@ -71,5 +80,30 @@ public class Editora {
 		this.livros = livros;
 	}
 
+	public String getImagemNome() {
+		return imagemNome;
+	}
+
+	public void setImagemNome(String imagemNome) {
+		this.imagemNome = imagemNome;
+	}
+
+	public String getImagemFileName() {
+		return imagemFileName;
+	}
+
+	public void setImagemFileName(String imagemFileName) {
+		this.imagemFileName = imagemFileName;
+	}
+
+	public String getImagemUrl() {
+		return imagemUrl;
+	}
+
+	public void setImagemUrl(String imagemUrl) {
+		this.imagemUrl = imagemUrl;
+	}
+
+	
 	
 }
